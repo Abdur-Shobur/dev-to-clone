@@ -12,14 +12,18 @@ datasource db {
 
 // Example models for your dev.to clone
 model User {
-    id        Int      @id @default(autoincrement())
-    email     String   @unique
-    username  String   @unique
-    password  String
-    bio       String?
-    image     String?
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    id                Int       @id @default(autoincrement())
+    email             String    @unique
+    username          String    @unique
+    password          String
+    bio               String?
+    image             String?
+    emailVerified     Boolean   @default(false)
+    verificationToken String?   @unique
+    resetToken        String?   @unique
+    resetTokenExpiry  DateTime?
+    createdAt         DateTime  @default(now())
+    updatedAt         DateTime  @updatedAt
 
     // Relations
     articles  Article[]
